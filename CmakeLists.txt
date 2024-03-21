@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.28 FATAL_ERROR)
+project(fractal_fun VERSION 0.1.0 LANGUAGES CXX C)
+
+set(CMAKE_CXX_COMPILER "g++-13")
+set(CMAKE_C_COMPILER "g++-13")
+
+find_package(raylib  4.5 REQUIRED)
+find_package(OpenMP REQUIRED)
+
+add_executable(frac src/main.cpp)
+
+target_compile_options(frac PUBLIC -std=c++20 -Ofast -Wall -Wpedantic -Wextra -fopenmp)
+option(SUPPORT_FILEFORMAT_JPG "Support loading JPG as textures" ON)
+
+target_link_libraries(frac PUBLIC raylib OpenMP::OpenMP_CXX)
